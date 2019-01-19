@@ -124,6 +124,8 @@ console.log('Server running on http://%s:%s', ip, port);
 
 module.exports = app ;
 
+var io = require('socket.io').listen(server);
+
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
 
