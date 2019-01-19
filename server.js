@@ -123,3 +123,45 @@ app.listen(port, ip);
 console.log('Server running on http://%s:%s', ip, port);
 
 module.exports = app ;
+
+
+var server.lastPlayderID = 0;
+
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
+var woorden = ["boek", "boot", "doorn", "JJ", "anaal","mug", "engeland", "storm", "vrouwen", "ventiel",
+"knap", "overgang", "bank", "angst", "serie","strip", "kangoeroe", "malibu", "neon", "kool","tandarts", 
+"hart", "ham", "baard", "yoghurt", "wind", "trend"];
+
+var kleuren = ["CornflowerBlue","CornflowerBlue","CornflowerBlue","CornflowerBlue",
+"CornflowerBlue","CornflowerBlue","CornflowerBlue","CornflowerBlue","CornflowerBlue",
+"red","red","red","red","red","red","red","red","RosyBrown","RosyBrown","RosyBrown",
+"RosyBrown","RosyBrown","RosyBrown","RosyBrown","grey"]
+
+var kleuren_random = shuffle(kleuren);
+
+var woorden_random = shuffle(woorden);
+
+var gedrukt = [];
+
+
+
+
+
