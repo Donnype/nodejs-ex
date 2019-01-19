@@ -134,7 +134,7 @@ module.exports = app ;
 //})
 
 var server = require('http').Server(app);
-var io = require('/socket.io').listen(server);
+var io = require('socket.io-client/dist/socket.io').listen(server);
 var path = require('path');
 
 function shuffle(array) {
