@@ -126,6 +126,13 @@ module.exports = app ;
 
 //var io = require('socket.io').listen(server);
 
+self.app = express();
+self.server = require('http').createServer(self.app);
+self.io = io.listen(self.server);
+self.io.configure(function(){
+    self.io.set("transports", ["websocket"]);
+})
+
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
 
