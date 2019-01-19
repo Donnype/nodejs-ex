@@ -133,9 +133,20 @@ module.exports = app ;
 //   self.io.set("transports", ["websocket"]);
 //})
 
+// Check the configuration file for more details
+var config = require('./config');
+
+// Express.js stuff
+var express = require('express');
+var app = require('express')();
 var server = require('http').Server(app);
-var io = require('/socket.io').listen(server);
-var path = require('path');
+
+// Websockets with socket.io
+var io = require('socket.io')(server);
+
+//var server = require('http').Server(app);
+//var io = require('/socket.io').listen(server);
+//var path = require('path');
 
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
