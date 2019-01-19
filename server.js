@@ -124,9 +124,6 @@ console.log('Server running on http://%s:%s', ip, port);
 
 module.exports = app ;
 
-
-var server.lastPlayderID = 0;
-
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
 
