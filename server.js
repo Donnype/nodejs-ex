@@ -137,16 +137,16 @@ module.exports = app ;
 // var config = require('./config');
 
 // Express.js stuff
-var express = require('express');
-var app = require('express')();
-var server = require('http').Server(app);
+//var express = require('express');
+//var app = require('express')();
+//var server = require('http').Server(app);
 
 // Websockets with socket.io
-var io = require('socket.io')(server);
+//var io = require('socket.io')(server);
 
-//var server = require('http').Server(app);
-//var io = require('/socket.io').listen(server);
-//var path = require('path');
+var server = require('http').Server(app);
+var io = require('/socket.io').listen(server);
+
 
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
