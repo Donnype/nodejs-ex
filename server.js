@@ -12,7 +12,7 @@ app.get('/',function(req,res){
 
 //var server.lastPlayderID = 0;
 
-server.listen(process.env.PORT || 8000,function(){
+server.listen(process.env.PORT || 8080,function(){
     console.log('Listening on '+server.address().port);
 });
 
