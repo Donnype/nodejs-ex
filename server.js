@@ -10,7 +10,7 @@ app.get('/',function(req,res){
     res.sendFile(__dirname+'/public/scratch.html');
 });
 
-var server.lastPlayderID = 0;
+//var server.lastPlayderID = 0;
 
 server.listen(process.env.PORT || 8000,function(){
     console.log('Listening on '+server.address().port);
