@@ -14,7 +14,8 @@
     "object-assign":"4.1.0",
     "socket.io-adapter": "~1.1.0",
     "socket.io-client": "^2.2.0",
-    "socket.io-parser": "~3.3.0"
+    "socket.io-parser": "~3.3.0",
+    "socket.io":  "~1.0.1"
   },
   "engine": {
     "node": "*",
