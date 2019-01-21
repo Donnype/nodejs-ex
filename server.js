@@ -1,7 +1,9 @@
 //  OpenShift sample Node application
 var express = require('express'),
     app     = express(),
-    morgan  = require('morgan');
+    morgan  = require('morgan'),
+	server = require('http').Server(app),
+	io = require('socket.io').listen(server);
     
 Object.assign=require('object-assign')
 
@@ -124,29 +126,6 @@ console.log('Server running on http://%s:%s', ip, port);
 
 module.exports = app ;
 
-//var io = require('socket.io').listen(server);
-
-
-//self.server = require('http').createServer(self.app);
-//self.io = io.listen(self.server);
-//self.io.configure(function(){
-//   self.io.set("transports", ["websocket"]);
-//})
-
-// Check the configuration file for more details
-// var config = require('./config');
-
-// Express.js stuff
-//var express = require('express');
-//var app = require('express')();
-//var server = require('http').Server(app);
-
-// Websockets with socket.io
-//var io = require('socket.io')(server);
-
-var server = require('http').Server(app);
-var io = require('socket.io').listen(server);
-
 
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
@@ -174,7 +153,7 @@ var woorden = ["boek", "boot", "doorn", "JJ", "anaal","mug", "engeland", "storm"
 var kleuren = ["CornflowerBlue","CornflowerBlue","CornflowerBlue","CornflowerBlue",
 "CornflowerBlue","CornflowerBlue","CornflowerBlue","CornflowerBlue","CornflowerBlue",
 "red","red","red","red","red","red","red","red","RosyBrown","RosyBrown","RosyBrown",
-"RosyBrown","RosyBrown","RosyBrown","RosyBrown","grey"]
+"RosyBrown","RosyBrown","RosyBrown","RosyBrown","grey"];
 
 var kleuren_random = shuffle(kleuren);
 
