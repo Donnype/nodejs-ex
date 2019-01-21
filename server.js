@@ -4,10 +4,10 @@ var server = require('http').Server(app);
 var io = require('socket.io').listen(server);
 var path = require('path');
 
-app.use(express.static(path.join(__dirname,'public')));
+app.use(express.static(path.join(__dirname,'views')));
 
 app.get('/',function(req,res){
-    res.sendFile(__dirname+'/public/scratch.html');
+    res.sendFile(__dirname+'/views/index.html');
 });
 
 //var server.lastPlayderID = 0;
