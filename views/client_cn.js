@@ -1,8 +1,3 @@
-/**
- * Created by Jerome on 03-03-17.
- */
-//alert("client werkt");
-
 var Client = {};
 Client.socket = io.connect();
 
