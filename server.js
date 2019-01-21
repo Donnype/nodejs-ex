@@ -182,6 +182,26 @@ var woorden_random = shuffle(woorden);
 
 var gedrukt = [];
 
+io.on('connection',function(socket){
+	var borddata = [kleuren_random, woorden_random, gedrukt];
+	socket.emit('bord', borddata);
+		socket.on('klik',function(id){
+        	gedrukt.push(id);
+            socket.broadcast.emit('klik_server',id);
+    	});
+        socket.on('nieuwspel',function(){
+        	gedrukt = []
+        	kleuren_random = shuffle(kleuren);
+        	woorden_random = shuffle(woorden);
+        	borddata = [kleuren_random, woorden_random, gedrukt];
+            io.emit('nieuwspel', borddata);
+        });
+        
+    socket.on('test',function(){
+        console.log('test received');
+    });
+});
+
 
 
 
