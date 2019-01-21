@@ -4,7 +4,12 @@ var express = require('express'),
     morgan  = require('morgan'),
 	server = require('http').Server(app),
 	io = require('socket.io').listen(server);
-    
+	
+server.listen(process.env.PORT || 8080,function(){
+    console.log('Listening on '+server.address().port);
+});
+
+/*
 Object.assign=require('object-assign')
 
 app.engine('html', require('ejs').renderFile);
@@ -125,7 +130,7 @@ app.listen(port, ip);
 console.log('Server running on http://%s:%s', ip, port);
 
 module.exports = app ;
-
+*/
 
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
