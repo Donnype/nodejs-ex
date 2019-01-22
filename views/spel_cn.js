@@ -4,7 +4,13 @@ var urlroom = url.searchParams.get("room");
 
 if (urlroom != null){
 	enter_room(urlroom);
-};
+}
+
+else {
+	$(function(){
+    	$("#lobby-container").load("lobby.html");	
+	})
+}
 
 yalla = function(){
 

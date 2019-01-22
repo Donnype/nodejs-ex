@@ -6,6 +6,8 @@
     <!-- Ensure that everything scales appropriately on a mobile device -->
     <meta name="viewport" content="width=device-width, initial-scale=0.1, user-scalable=yes, minimum-scale=0.3, maximum-scale=1.0">
 	
+	<link rel="stylesheet" type="text/css" href="css/index_style.css">
+	
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	
 </head>
@@ -13,10 +15,6 @@
 <body id = "body">
 
 <div id="lobby-container" align="center">
-    <div class="button-container">
-       	Maak/kies een lobby: <input type="text" class="nieuwspel" id="room"=></input>
-    	<button onclick="yalla()">Yalla</button>
-    </div>
 </div>
 
 <div id="includedContent"></div>
@@ -24,60 +22,6 @@
 <script src="/socket.io/socket.io.js"></script>
 <script src="spel_cn.js"></script>
 <script src="client_cn.js"></script> 
-
-
-<style type="text/css">
-
-
-.button-container {
-    width: 900px;
-    background: white;
-    overflow-y: auto;
-}
-
-.button-container > a {
-    width: 150px;
-    height: 100px;
-    float: left;
-    margin: 10px;
-}
-
-.spymaster {
-    width: 130px;
-    height: 50px;
-    background-color: darkblue;
-    color: white;
-    margin: 15px;
-    text-align: center;
-    line-height: 50px;
-    font-size: 20px;
-    border-radius: 4px;
-}
-.nieuwspel {
-    width: 130px;
-    height: 50px;
-    background-color: green;
-    color: white;
-    margin: 15px;
-    text-align: center;
-    line-height: 50px;
-    font-size: 20px;
-    border-radius: 4px;
-}
-.button {
-    width: 100px;
-    height: 100px;
-    float: left;
-    background: lightgrey;
-    margin: 15px;
-    text-align: center;
-    line-height: 100px;
-    font-size: 20px;
-    font-family : "Comic Sans MS";
-    text-transform: uppercase;
-    border-radius: 4px;
-}
-</style>
 
 
 </body>
