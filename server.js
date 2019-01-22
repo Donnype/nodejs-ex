@@ -10,7 +10,9 @@ app.get('/',function(req,res){
     res.sendFile(__dirname+'/views/index.html');
 });
 
-//var server.lastPlayderID = 0;
+app.get('/:room',function(req,res){
+    res.sendFile(__dirname+'/views/index.html');
+});
 
 server.listen(process.env.PORT || 8080,function(){
     console.log('Listening on '+server.address().port);
@@ -35,38 +37,42 @@ function shuffle(array) {
   return array;
 }
 
-var woorden = ["boek", "boot", "doorn", "JJ", "anaal","mug", "engeland", "storm", "vrouwen", "ventiel",
-"knap", "overgang", "bank", "angst", "serie","strip", "kangoeroe", "malibu", "neon", "kool","tandarts", 
-"hart", "ham", "baard", "yoghurt", "wind", "trend"];
+var Rooms = {};
 
-var kleuren = ["CornflowerBlue","CornflowerBlue","CornflowerBlue","CornflowerBlue",
-"CornflowerBlue","CornflowerBlue","CornflowerBlue","CornflowerBlue","CornflowerBlue",
-"red","red","red","red","red","red","red","red","RosyBrown","RosyBrown","RosyBrown",
-"RosyBrown","RosyBrown","RosyBrown","RosyBrown","grey"]
-
-var kleuren_random = shuffle(kleuren);
-
-var woorden_random = shuffle(woorden);
-
-var gedrukt = [];
+function Room(name, kleur, woord, druk) {
+	this.naam = name;
+	this.kleuren = kleur;
+	this.woorden = woord;
+	this.gedrukt = druk;
+};
 
 io.on('connection',function(socket){
-	socket.join('Test room');
-	var borddata = [kleuren_random, woorden_random, gedrukt];
-	socket.emit('bord', borddata);
-	socket.on('klik',function(id){
-        gedrukt.push(id);
-        socket.broadcast.emit('klik_server',id);
+	console.log("connection");
+	socket.on('room', function(roomname) {
+        socket.join(roomname);
+        console.log(Rooms);
+        if(!(roomname in Rooms)){
+        	console.log("new");
+        	Rooms[roomname] = new Room(roomname, 
+        	shuffle(["CornflowerBlue","CornflowerBlue","CornflowerBlue","CornflowerBlue", "CornflowerBlue","CornflowerBlue","CornflowerBlue","CornflowerBlue","CornflowerBlue", "red","red","red","red","red","red","red","red","RosyBrown","RosyBrown","RosyBrown","RosyBrown","RosyBrown","RosyBrown","RosyBrown","grey"]), 
+        	shuffle(["boek", "boot", "doorn", "JJ", "anaal","mug", "engeland", "storm", "vrouwen", "ventiel","knap", "overgang", "bank", "angst", "serie","strip", "kangoeroe", "malibu", "neon", "kool","tandarts", "hart", "ham", "baard", "yoghurt", "wind", "trend"]), 
+        	[]);
+        	console.log(Rooms["1"].kleuren);
+        }
+		socket.emit('bord', Rooms[roomname]);
+		socket.on('klik',function(idroom){
+        	Rooms[idroom[1]].gedrukt.push(idroom[0]);
+            socket.to(idroom[1]).emit('klik_server',idroom[0]);
+    	});
+        socket.on('nieuwspel',function(roomname){
+        	Rooms[roomname].gedrukt = []
+        	Rooms[roomname].kleuren = shuffle(["CornflowerBlue","CornflowerBlue","CornflowerBlue","CornflowerBlue", "CornflowerBlue","CornflowerBlue","CornflowerBlue","CornflowerBlue","CornflowerBlue", "red","red","red","red","red","red","red","red","RosyBrown","RosyBrown","RosyBrown","RosyBrown","RosyBrown","RosyBrown","RosyBrown","grey"]);
+        	Rooms[roomname].woorden = shuffle(["boek", "boot", "doorn", "JJ", "anaal","mug", "engeland", "storm", "vrouwen", "ventiel","knap", "overgang", "bank", "angst", "serie","strip", "kangoeroe", "malibu", "neon", "kool","tandarts", "hart", "ham", "baard", "yoghurt", "wind", "trend"]);
+            io.in(roomname).emit('nieuwspel', Rooms[roomname]);
+        });
+    	socket.on('test',function(){
+        	console.log('test received');
+    	});
     });
-    socket.on('nieuwspel',function(){
-        gedrukt = []
-        kleuren_random = shuffle(kleuren);
-        woorden_random = shuffle(woorden);
-        borddata = [kleuren_random, woorden_random, gedrukt];
-        io.emit('nieuwspel', borddata);
-    });
-        
-    socket.on('test',function(){
-        console.log('test received');
-    });
+	
 });
