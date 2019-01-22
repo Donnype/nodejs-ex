@@ -50,14 +50,11 @@ io.on('connection',function(socket){
 	console.log("connection");
 	socket.on('room', function(roomname) {
         socket.join(roomname);
-        console.log(Rooms);
         if(!(roomname in Rooms)){
-        	console.log("new");
         	Rooms[roomname] = new Room(roomname, 
         	shuffle(["CornflowerBlue","CornflowerBlue","CornflowerBlue","CornflowerBlue", "CornflowerBlue","CornflowerBlue","CornflowerBlue","CornflowerBlue","CornflowerBlue", "red","red","red","red","red","red","red","red","RosyBrown","RosyBrown","RosyBrown","RosyBrown","RosyBrown","RosyBrown","RosyBrown","grey"]), 
         	shuffle(["boek", "boot", "doorn", "JJ", "anaal","mug", "engeland", "storm", "vrouwen", "ventiel","knap", "overgang", "bank", "angst", "serie","strip", "kangoeroe", "malibu", "neon", "kool","tandarts", "hart", "ham", "baard", "yoghurt", "wind", "trend"]), 
         	[]);
-        	console.log(Rooms["1"].kleuren);
         }
 		socket.emit('bord', Rooms[roomname]);
 		socket.on('klik',function(idroom){
