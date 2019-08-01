@@ -53,7 +53,7 @@ io.on('connection',function(socket){
         if(!(roomname in Rooms)){
         	Rooms[roomname] = new Room(roomname, 
         	shuffle(["CornflowerBlue","CornflowerBlue","CornflowerBlue","CornflowerBlue", "CornflowerBlue","CornflowerBlue","CornflowerBlue","CornflowerBlue","CornflowerBlue", "red","red","red","red","red","red","red","red","RosyBrown","RosyBrown","RosyBrown","RosyBrown","RosyBrown","RosyBrown","RosyBrown","grey"]), 
-        	shuffle(["boek", "boot", "doorn", "JJ", "anaal","mug", "engeland", "storm", "vrouwen", "ventiel","knap", "overgang", "bank", "angst", "serie","strip", "kangoeroe", "malibu", "neon", "kool","tandarts", "hart", "ham", "baard", "yoghurt", "wind", "trend"]), 
+        	shuffle(["boek", "boot", "doorn", "mug", "engeland", "storm", "vrouwen", "ventiel","knap", "overgang", "bank", "angst", "serie","strip", "kangoeroe", "malibu", "neon", "kool","tandarts", "hart", "ham", "baard", "yoghurt", "wind", "trend"]), 
         	[]);
         }
 		socket.emit('bord', Rooms[roomname]);
@@ -64,7 +64,7 @@ io.on('connection',function(socket){
         socket.on('nieuwspel',function(roomname){
         	Rooms[roomname].gedrukt = []
         	Rooms[roomname].kleuren = shuffle(["CornflowerBlue","CornflowerBlue","CornflowerBlue","CornflowerBlue", "CornflowerBlue","CornflowerBlue","CornflowerBlue","CornflowerBlue","CornflowerBlue", "red","red","red","red","red","red","red","red","RosyBrown","RosyBrown","RosyBrown","RosyBrown","RosyBrown","RosyBrown","RosyBrown","grey"]);
-        	Rooms[roomname].woorden = shuffle(["boek", "boot", "doorn", "JJ", "anaal","mug", "engeland", "storm", "vrouwen", "ventiel","knap", "overgang", "bank", "angst", "serie","strip", "kangoeroe", "malibu", "neon", "kool","tandarts", "hart", "ham", "baard", "yoghurt", "wind", "trend"]);
+        	Rooms[roomname].woorden = shuffle(["boek", "boot", "doorn", "mug", "engeland", "storm", "vrouwen", "ventiel","knap", "overgang", "bank", "angst", "serie","strip", "kangoeroe", "malibu", "neon", "kool","tandarts", "hart", "ham", "baard", "yoghurt", "wind", "trend"]);
             io.in(roomname).emit('nieuwspel', Rooms[roomname]);
         });
     	socket.on('test',function(){
