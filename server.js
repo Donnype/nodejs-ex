@@ -1,6 +1,8 @@
 var express = require('express');
 var app = express();
 var server = require('http').Server(app);
+var morgan = require('morgan');
+app.use(morgan('combined'));
 var io = require('socket.io').listen(server);
 var path = require('path');
 
@@ -53,7 +55,7 @@ io.on('connection',function(socket){
         if(!(roomname in Rooms)){
         	Rooms[roomname] = new Room(roomname, 
         	shuffle(["CornflowerBlue","CornflowerBlue","CornflowerBlue","CornflowerBlue", "CornflowerBlue","CornflowerBlue","CornflowerBlue","CornflowerBlue","CornflowerBlue", "red","red","red","red","red","red","red","red","RosyBrown","RosyBrown","RosyBrown","RosyBrown","RosyBrown","RosyBrown","RosyBrown","grey"]), 
-        	shuffle(["boek", "boot", "doorn", "mug", "engeland", "storm", "vrouwen", "ventiel","knap", "overgang", "bank", "angst", "serie","strip", "kangoeroe", "malibu", "neon", "kool","tandarts", "hart", "ham", "baard", "yoghurt", "wind", "trend"]), 
+        	shuffle(["bek", "boot", "doorn", "mug", "engeland", "storm", "vrouwen", "ventiel","knap", "overgang", "bank", "angst", "serie","strip", "kangoeroe", "malibu", "neon", "kool","tandarts", "hart", "ham", "baard", "yoghurt", "wind", "trend"]), 
         	[]);
         }
 		socket.emit('bord', Rooms[roomname]);
